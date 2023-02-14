@@ -7,9 +7,10 @@
 
     $validator = Validation::createValidator();
     $violations = $validator->validate('Bernhard', [
-        new Length(['min' => 10]),
+        new Length(['max' => 1]),
         new NotBlank(),
     ]);
+
 
     if (0 !== count($violations)) {
         // there are errors, now you can show them
