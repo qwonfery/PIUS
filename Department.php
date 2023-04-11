@@ -24,7 +24,7 @@ class Department
     public function __toString(): string
     {
         $message = "Department".$this->name.'<br>';
-        foreach ($this->employeeArray as $employee){
+        foreach ($this->employeeArray as $employee) {
             $message .= strval($employee).'<br>';
         }
         return $message;

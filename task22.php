@@ -9,12 +9,12 @@ function departmentAmountMax(array $departments): array
 {
     $maxDepartments = array();
     $maxValue = count($departments[0]->employeeArray);
-    
+
     foreach ($departments as $department) {
         $departmentCount =  count($department->employeeArray);
-         if ($departmentCount == $maxValue){
+        if ($departmentCount == $maxValue) {
             $maxDepartments[] = $department;
-         }
+        }
     }
 
     return $maxDepartments;
@@ -26,7 +26,7 @@ function departmentsMinMax(array $departments): void
     $minValue = $departments[0]->sumSalary();
     $maxDepartments = array($departments[0]);
     $maxValue = $departments[0]->sumSalary();
-    foreach ($departments as $department){
+    foreach ($departments as $department) {
         $departmentSalary = $department->sumSalary();
 
         switch (true) {
@@ -46,7 +46,7 @@ function departmentsMinMax(array $departments): void
             case $departmentSalary == $minValue:
                 $minDepartments[] = $department;
                 break;
-        }        
+        }
     }
 
     $maxDepartments = departmentAmountMax($maxDepartments);
@@ -54,26 +54,26 @@ function departmentsMinMax(array $departments): void
 
     echo '<br>';
     echo "Department(s) with max salary<br>";
-    foreach ($maxDepartments as $maxDepartment){
+    foreach ($maxDepartments as $maxDepartment) {
         echo $maxDepartment;
     }
     echo "Department(s) with min salary<br>";
-    foreach ($minDepartments as $minDepartment){
+    foreach ($minDepartments as $minDepartment) {
         echo $minDepartment;
     }
-    
+
 }
 
 try {
 
 
     $departmentsArray = array();
-    for ($j = 1; $j <= 10; $j++){
+    for ($j = 1; $j <= 10; $j++) {
         $employeeArray = array();
-        for ($i = 1; $i <= 3; $i++){
-            $employeeArray[] = new Employee($i, "Jora", rand(1000,10000), new \DateTime("12.02.2007"));
+        for ($i = 1; $i <= 3; $i++) {
+            $employeeArray[] = new Employee($i, "Jora", rand(1000, 10000), new \DateTime("12.02.2007"));
         }
-        $departmentsArray[] = new Department($employeeArray,$j);
+        $departmentsArray[] = new Department($employeeArray, $j);
     }
 
     departmentsMinMax($departmentsArray);
