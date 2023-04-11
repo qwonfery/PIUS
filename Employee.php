@@ -10,10 +10,10 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 class Employee
 {
     public function __construct(
-        public int $id,
-        public string $name,
-        public int $salary,
-        public \DateTime $employmentDate
+        private int $id,
+        private string $name,
+        private int $salary,
+        private \DateTime $employmentDate
     ) {
         $this->validate();
     }
@@ -21,14 +21,10 @@ class Employee
     public static function loadValidatorMetadata(ClassMetadata $metadata): void
     {
 
-        $metadata->addPropertyConstraint('id', new Assert\Type('int'));
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank());
-
-        $metadata->addPropertyConstraint('name', new Assert\Type('string'));
+        $metadata->addPropertyConstraint('id', new Assert\Positive());
         $metadata->addPropertyConstraint('name', new Assert\NotBlank());
-
-        $metadata->addPropertyConstraint('salary', new Assert\Type('int'));
-        $metadata->addPropertyConstraint('salary', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('salary', new Assert\PositiveOrZero());
+        $metadata->addPropertyConstraint('employmentDate', new Assert\GreaterThan(new \DateTime("12.02.2002")));
 
     }
 
@@ -50,6 +46,11 @@ class Employee
     public function getExperience(): int
     {
         return $this->employmentDate->diff(new \DateTime())->y;
+    }
+
+    public function getSalary(): int
+    {
+        return $this->salary;
     }
 
     public function __toString(): string
