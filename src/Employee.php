@@ -1,8 +1,7 @@
 <?php
 
-namespace lab1;
+namespace App;
 
-require_once __DIR__.'/vendor/autoload.php';
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -33,13 +32,18 @@ class Employee
         $validator = Validation::createValidatorBuilder()
             ->addMethodMapping('loadValidatorMetadata')
             ->getValidator();
+
         $violations = $validator->validate($this);
+
         $message = "Errors when creating an Employee:<br>";
-        if (0 !== count($violations)) {
+
+        if (count($violations)) {
+
             foreach ($violations as $violation) {
                 $message .= $violation->getMessage().'<br>';
             }
             throw new \ValueError($message);
+
         }
     }
 

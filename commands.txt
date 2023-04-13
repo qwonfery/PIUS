@@ -22,3 +22,8 @@ php -a
 // run script
 php script.php
 
+//git
+it checkout -b start 01241d2
+
+// composer
+composer dump-autoload

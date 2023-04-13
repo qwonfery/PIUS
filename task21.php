@@ -1,8 +1,8 @@
 <?php
 
-namespace lab1;
+require_once __DIR__.'/vendor/autoload.php';
 
-require_once 'Employee.php';
+use App\Employee;
 
 try {
     $Jora = new Employee(0, "", -2, new \DateTime("12.02.2002"));
